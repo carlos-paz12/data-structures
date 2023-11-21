@@ -21,6 +21,8 @@ public class LinkedList<E> {
     }
 
     public void add(int i, E e) {
+        checkIsIndexBusy(i);
+
         if (i == 0) {
             addAtStart(e);
         } else if (i == size) {
@@ -97,17 +99,17 @@ public class LinkedList<E> {
     }
 
     public E get(int i) {
+        checkIsIndexBusy(i);
         return getNode(i).getElement();
     }
 
-
     public E getFirst() {
-        if (first.getElement() == null) throw new NoSuchElementException();
+        if (first == null) throw new NoSuchElementException();
         return first.getElement();
     }
 
-    public E getEnd() {
-        if (last.getElement() == null) throw new NoSuchElementException();
+    public E getLast() {
+        if (last == null) throw new NoSuchElementException();
         return last.getElement();
     }
 
@@ -127,8 +129,6 @@ public class LinkedList<E> {
     }
 
     private Node<E> getNode(int i) {
-        checkIsIndexBusy(i);
-
         Node<E> current = null;
 
         /*
