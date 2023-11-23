@@ -1,13 +1,13 @@
 package com.github.carlos_paz12.data_structures.stack;
 
-import java.util.LinkedList;
+import com.github.carlos_paz12.data_structures.linked_list.LinkedList;
 
 public class Stack<T> {
 
     private LinkedList<T> elements;
 
-    public Stack(LinkedList<T> elements) {
-        this.elements = elements;
+    public Stack() {
+        this.elements = new LinkedList<>();
     }
 
     public void push(T t) {
@@ -23,7 +23,7 @@ public class Stack<T> {
     }
 
     public boolean isEmpty() {
-        return elements.isEmpty();
+        return size() == 0;
     }
 
     public int size() {

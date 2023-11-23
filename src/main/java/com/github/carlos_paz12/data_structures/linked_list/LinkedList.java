@@ -51,13 +51,13 @@ public class LinkedList<E> {
         size++;
     }
 
-    public void remove(int i) {
+    public E remove(int i) {
         checkIsIndexBusy(i);
 
         if (i == 0) {
-            removeAtStart();
+            return removeAtStart();
         } else if (i == size - 1) {
-            removeAtEnd();
+            return removeAtEnd();
         } else {
             Node<E> prev = getNode(i - 1);
             Node<E> current = prev.getNext();
@@ -67,10 +67,11 @@ public class LinkedList<E> {
             next.setPrev(prev);
 
             size--;
+            return current.getElement();
         }
     }
 
-    public void removeAtStart() {
+    public E removeAtStart() {
         checkIsIndexBusy(0);
 
         Node<E> oldFirst = first;
@@ -83,18 +84,23 @@ public class LinkedList<E> {
         if (size == 0) {
             last = null;
         }
+
+        return oldFirst.getElement();
     }
 
-    public void removeAtEnd() {
+    public E removeAtEnd() {
         checkIsIndexBusy(size - 1);
 
         if (size == 1) {
-            removeAtStart();
+            return removeAtStart();
         } else {
-            Node<E> penul = last.getPrev();
+            Node<E> oldLast = last;
+            Node<E> penul = oldLast.getPrev();
             penul.setNext(null);
             last = penul;
             size--;
+
+            return oldLast.getElement();
         }
     }
 
